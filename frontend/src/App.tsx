@@ -4,7 +4,6 @@ import ServersTable from "./components/ServersTable/ServersTable";
 import {getServers} from "./api/getServers";
 
 
-
 function App() {
   return (
     <div className="App">

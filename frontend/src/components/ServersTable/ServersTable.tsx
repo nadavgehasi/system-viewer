@@ -15,7 +15,7 @@ interface ServersTableProps {
 const ServersTable: React.FC<ServersTableProps> = ({servers}) => {
     const data = servers.map(server => ({
         ...server,
-        key: server.name,
+        key: server.serverName,
     }));
 
     return (

@@ -1,5 +1,9 @@
-import {Tag} from "antd";
 import React from "react";
+import {Tag} from "antd";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {faEdit} from "@fortawesome/free-regular-svg-icons/faEdit";
+import {faTrashAlt} from "@fortawesome/free-regular-svg-icons/faTrashAlt";
+import {faRedoAlt} from "@fortawesome/free-solid-svg-icons/faRedoAlt";
 
 const serversTableColumns = [
     {
@@ -43,8 +47,9 @@ const serversTableColumns = [
         key: 'action',
         render: (text: string, record:any) => (
             <span>
-                <a style={{ marginRight: 16 }}>Invite {record.name}</a>
-                <a>Delete</a>
+                <FontAwesomeIcon icon={faRedoAlt} />
+                <FontAwesomeIcon icon={faEdit} />
+                <FontAwesomeIcon icon={faTrashAlt} />
             </span>
 ),},
 ];

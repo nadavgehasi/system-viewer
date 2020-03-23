@@ -4,6 +4,8 @@ import {Server} from "../types/server"
          new Server({
              id: "1",
              serverName: 'yamut',
+             serverBase: 'ירקון',
+             teamName: 'אולטרה',
              systemName: 'greenmile',
              status: 'Down',
              tags: ['Operational'],
@@ -13,6 +15,8 @@ import {Server} from "../types/server"
          new Server({
              id: "2",
              serverName: 'yarmon',
+             serverBase: 'מפקדה',
+             teamName: 'אולטרה',
              systemName: 'armon',
              status: 'Good',
              tags: ['Operational'],
@@ -22,6 +26,8 @@ import {Server} from "../types/server"
          new Server({
              id: "3",
              serverName: 'eliza',
+             serverBase: 'מפקדה',
+             teamName: 'אולטרה',
              systemName: 'alice',
              status: 'Up',
              tags: ['Tests'],

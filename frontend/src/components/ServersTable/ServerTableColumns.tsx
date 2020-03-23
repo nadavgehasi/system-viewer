@@ -5,9 +5,9 @@ import {faEdit} from "@fortawesome/free-regular-svg-icons/faEdit";
 import {faTrashAlt} from "@fortawesome/free-regular-svg-icons/faTrashAlt";
 import {faRedoAlt} from "@fortawesome/free-solid-svg-icons/faRedoAlt";
 import {
+    Server,
     CORES_FIELD,
     RAM_FIELD,
-    Server,
     SERVER_NAME_FIELD,
     STATUS_FIELD,
     SYSTEM_NAME_FIELD,
@@ -15,13 +15,13 @@ import {
 } from "../../types/server";
 import {getColumnByField} from "../../utils/tableColumnsUtils";
 
-const serversTableColumns = [
+const getServersTableColumns = (deleteServer: (serverId: string) => void) => { return [
     {
         ...getColumnByField('שם השרת', SERVER_NAME_FIELD),
         render: (text: string) => (
             <span>
                 <FontAwesomeIcon icon={faEdit} />
-                <a>  {text}</a>
+                <a>{text}</a>
             </span>
         ),
     },
@@ -49,7 +49,7 @@ const serversTableColumns = [
         render: (text:string) => (
             <span>
                 <FontAwesomeIcon icon={faRedoAlt} />
-                <a> {text}</a>
+                <a>{text}</a>
             </span>
         )
     },
@@ -58,11 +58,11 @@ const serversTableColumns = [
     {
         title: 'Delete',
         key: 'delete',
-        render: (text: string, record:any) => (
+        render: (text: string, record:Server) => (
             <span>
-                <FontAwesomeIcon icon={faTrashAlt} />
+                <FontAwesomeIcon icon={faTrashAlt} onClick={ (event) => deleteServer(record.id)} />
             </span>
 ),},
-];
+];};
 
-export default serversTableColumns;
+export default getServersTableColumns;

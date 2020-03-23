@@ -2,6 +2,7 @@ import {Server} from "../types/server"
  export const getServers = () => {
      return [
          new Server({
+             id: "1",
              serverName: 'yamut',
              systemName: 'greenmile',
              status: 'Down',
@@ -10,6 +11,7 @@ import {Server} from "../types/server"
              cores: '24',
          }),
          new Server({
+             id: "2",
              serverName: 'yarmon',
              systemName: 'armon',
              status: 'Good',
@@ -18,6 +20,7 @@ import {Server} from "../types/server"
             cores: '64',
          }),
          new Server({
+             id: "3",
              serverName: 'eliza',
              systemName: 'alice',
              status: 'Up',
@@ -27,3 +30,8 @@ import {Server} from "../types/server"
          }),
      ];
  };
+
+
+export const deleteServerApi = (serverId: string) => {
+    console.log("Server Deleted");
+};

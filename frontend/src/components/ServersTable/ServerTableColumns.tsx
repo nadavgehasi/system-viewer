@@ -5,27 +5,26 @@ import {faEdit} from "@fortawesome/free-regular-svg-icons/faEdit";
 import {faTrashAlt} from "@fortawesome/free-regular-svg-icons/faTrashAlt";
 import {faRedoAlt} from "@fortawesome/free-solid-svg-icons/faRedoAlt";
 import {
-    CORES_FIELD,
-    RAM_FIELD,
     Server,
-    SERVER_NAME_FIELD,
-    STATUS_FIELD,
-    SYSTEM_NAME_FIELD,
-    TAGS_FIELD
+    CORES_FIELD, RAM_FIELD, SERVER_NAME_FIELD,
+    STATUS_FIELD, SYSTEM_NAME_FIELD,
+    TAGS_FIELD, TEAM_NAME_FIELD, SERVER_BASE_FIELD
 } from "../../types/server";
 import {getColumnByField} from "../../utils/tableColumnsUtils";
 
-const serversTableColumns = [
+const getServersTableColumns = (deleteServer: (serverId: string) => void) => { return [
     {
-        ...getColumnByField('שם השרת', SERVER_NAME_FIELD),
+        ...getColumnByField('שרת', SERVER_NAME_FIELD),
         render: (text: string) => (
             <span>
                 <FontAwesomeIcon icon={faEdit} />
-                <a>  {text}</a>
+                <a> {text}</a>
             </span>
         ),
     },
-    {...getColumnByField('שם המערכת', SYSTEM_NAME_FIELD)},
+    {...getColumnByField('בסיס', SERVER_BASE_FIELD)},
+    {...getColumnByField('צוות', TEAM_NAME_FIELD)},
+    {...getColumnByField('מערכת', SYSTEM_NAME_FIELD)},
     {
         ...getColumnByField('מבצעי / טסטים', TAGS_FIELD),
         render: (tags: Array<string>)  => (
@@ -58,11 +57,11 @@ const serversTableColumns = [
     {
         title: 'Delete',
         key: 'delete',
-        render: (text: string, record:any) => (
+        render: (text: string, record:Server) => (
             <span>
-                <FontAwesomeIcon icon={faTrashAlt} />
+                <FontAwesomeIcon icon={faTrashAlt} onClick={ (event) => deleteServer(record.id)} />
             </span>
 ),},
-];
+];};
 
-export default serversTableColumns;
+export default getServersTableColumns;

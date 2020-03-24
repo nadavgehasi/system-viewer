@@ -1,41 +1,28 @@
-import React, {useState} from 'react';
+import React from 'react';
 import './App.css';
 
 import ServersTable from "./components/ServersTable/ServersTable";
-import {deleteServerApi, getServers} from "./api/ServerApi";
-import {filterObjFromArray} from "./utils/ArrayUtils";
 
-import {Tabs} from "antd";
-import "antd/lib/tabs/style/index.css"
+import AppMenu from "./components/Menu/AppMenu";
 
 import TeamsList from "./components/TeamsList/TeamsList";
 
-const { TabPane } = Tabs;
+import {BrowserRouter, Route, Switch} from "react-router-dom"
+import SystemsList from "./components/TeamSystems/SystemsList";
 
 function App() {
-    const [servers, setServers] = useState(getServers());
-
-    const deleteServer = (serverId: string) => {
-        deleteServerApi(serverId);
-        setServers(filterObjFromArray(serverId, servers))
-    };
 
     return (
         <div className="App">
-            <Tabs>
-                <TabPane tab="צוותים" key="1">
-                    <TeamsList/>
-                </TabPane>
-                <TabPane tab="טבלה" key="2">
-                    <p></p>
-                    <p></p>
-                    <p></p>
-                    <ServersTable
-                        servers={servers}
-                        deleteServer={deleteServer}
-                    />
-                </TabPane>
-            </Tabs>
+            <BrowserRouter>
+                <AppMenu/>
+                <Switch>
+                    <Route path="/" exact component={TeamsList} />
+                    <Route path="/table" exact component={ServersTable} />
+                    <Route path="/teams" exact component={TeamsList} />
+                    <Route path="/teams/:teamId" component={SystemsList} />
+                </Switch>
+            </BrowserRouter>
         </div>
   );
 }

@@ -1,13 +1,16 @@
-
 import React, {useState} from "react";
 import {getSystems} from "../../api/SystemApi";
 import {List} from "antd";
-import "./systemsList.css"
-import systemCard from "./SystemCard";
+import "./SystemsList.css"
 import SystemCard from "./SystemCard";
+import {RouteComponentProps} from "react-router-dom";
 
-const systemsList = () =>  {
-    const [systems, setSystems] = useState(getSystems());
+interface SystemsListProps extends RouteComponentProps<{teamId: string }> {
+
+}
+
+const SystemsList: React.FC<SystemsListProps> = ({match}) =>  {
+    const [systems, setSystems] = useState(getSystems(match.params.teamId));
 
     return (
         <List
@@ -20,4 +23,4 @@ const systemsList = () =>  {
 };
 
 
-export default systemsList;
+export default SystemsList;

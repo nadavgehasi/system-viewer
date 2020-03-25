@@ -11,7 +11,9 @@
     text-align: right;
 }
 
-.ant-table tr:nth-child(even) {background-color: #f2f2f2;}
+.ant-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
 
 .ant-table-container table > thead > tr:first-child th:last-child {
     border-top-right-radius: 0;

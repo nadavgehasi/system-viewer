@@ -10,7 +10,7 @@ const AppMenu = () => {
     return (
         <Menu defaultSelectedKeys={["/table"]}>
             <Menu.Item key="/table">
-                <Link to="table">טבלה</Link>
+                <Link to="table">שרתים</Link>
             </Menu.Item>
             <Menu.Item key="/teams">
                 <Link to="/teams">צוותים</Link>

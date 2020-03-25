@@ -1,18 +1,24 @@
 import React from "react";
 import {Card} from "antd";
 import "antd/lib/card/style/index.css"
-import "./SystemCard.css"
+import "../General/CardStyle.css"
 import {System} from "../../types/system";
+import PropertyList from "../General/PropertyList";
+import CardTitle from "../General/CardTitle";
 
 interface SystemProps {
     system: System;
+    deleteSystem: (systemId: string) => void
 }
 
-const SystemCard:React.FC<SystemProps> = ({system}) =>  {
+const SystemCard:React.FC<SystemProps> = ({system, deleteSystem}) =>  {
     return (
-        <Card title={system.name}>
-            <h3>שרת: {system.systemServerName}</h3>
-            <h3>צוות: {system.systemTeam}</h3>
+        <Card title={<CardTitle id={system.id} title={<div style={{display: "contents"}}>{system.name}</div>} deleteCard={deleteSystem}/>}>
+            <PropertyList content={{
+                "שם השרת": system.systemServerName,
+                "שם הצוות": system.systemTeam,
+                "מידע חופש": system.info,
+            }}/>
         </Card>
     );
 };

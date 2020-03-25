@@ -6,7 +6,7 @@ import "antd/lib/pagination/style/index.css"
 import getServersTableColumns from "./ServerTableColumns";
 import "./ServersTable.css"
 import {deleteServerApi, getServers} from "../../api/ServerApi";
-import {filterObjFromArray} from "../../utils/ArrayUtils";
+import {deleteServerFromServers} from "../../utils/ArrayUtils";
 
 // interface ServersTableProps {
 //     servers: Array<Server>;
@@ -19,7 +19,7 @@ const ServersTable: React.FC = () => {
 
     const deleteServer = (serverId: string) => {
         deleteServerApi(serverId);
-        setServers(filterObjFromArray(serverId, servers))
+        setServers(deleteServerFromServers(serverId, servers))
     };
 
     const data = servers.map(server => ({

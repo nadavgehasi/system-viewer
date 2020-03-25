@@ -20,7 +20,7 @@ interface ServerInterface {
     cores: string;
 }
 
-export class Server {
+export class Server implements ServerInterface {
     id: string;
     serverName: string;
     serverBase: string;

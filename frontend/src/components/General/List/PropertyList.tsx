@@ -7,7 +7,7 @@ interface PropertyListProps {
 const PropertyList: React.FC<PropertyListProps> = ({ content }) => {
   return (
     <div>
-      {Object.entries(content).map((objectEntry) => (
+      {Object.entries(content).map(objectEntry => (
         <h3>
           {objectEntry[0]}: {objectEntry[1]}
         </h3>

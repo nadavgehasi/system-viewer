@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { deleteSystemApi, getTeamSystems } from "../../api/SystemApi";
 import { List } from "antd";
-import "../General/ListStyle.css";
+import "../General/List/ListStyle.css";
 import SystemCard from "./SystemCard";
 import { RouteComponentProps } from "react-router-dom";
 import { deleteSystemFromSystems } from "../../utils/ArrayUtils";
@@ -19,7 +19,7 @@ const SystemsList: React.FC<SystemsListProps> = ({ match }) => {
   return (
     <List
       dataSource={systems}
-      renderItem={(system) => (
+      renderItem={system => (
         <SystemCard system={system} deleteSystem={deleteSystem} />
       )}
     />

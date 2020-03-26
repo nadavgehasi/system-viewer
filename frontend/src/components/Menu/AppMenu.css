@@ -1,9 +1,9 @@
 .ant-menu {
-    display: flex;
-    text-align: right;
-    direction: rtl;
+  display: flex;
+  text-align: right;
+  direction: rtl;
 }
 
 .ant-menu-item > a:only-child {
-    text-decoration: none;
+  text-decoration: none;
 }

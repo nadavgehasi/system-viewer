@@ -1,2 +1,6 @@
 # Intellij Files
 *.iml
+.idea/
+*egg-info/
+**/*.pyc
+*.pyc

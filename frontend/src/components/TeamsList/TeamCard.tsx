@@ -2,13 +2,10 @@ import React from "react";
 import { Card } from "antd";
 import { Team } from "../../types/team";
 import "antd/lib/card/style/index.css";
-import "../General/CardStyle.css";
+import "../General/Card/CardStyle.css";
 import { Link } from "react-router-dom";
-import PropertyList from "../General/PropertyList";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEdit } from "@fortawesome/free-regular-svg-icons/faEdit";
-import { faTrashAlt } from "@fortawesome/free-regular-svg-icons/faTrashAlt";
-import CardTitle from "../General/CardTitle";
+import PropertyList from "../General/List/PropertyList";
+import CardTitle from "../General/Card/CardTitle";
 
 interface TeamProps {
   team: Team;
@@ -30,7 +27,7 @@ const TeamCard: React.FC<TeamProps> = ({ team, deleteTeam }) => {
         content={{
           "מספר מערכות": team.numberOfSystems,
           "מספר שרתים": team.numberOfServers,
-          "מידע חופשי": team.info,
+          "מידע חופשי": team.info
         }}
       />
     </Card>

@@ -21,9 +21,9 @@ const ServersTable: React.FC = () => {
     setServers(deleteServerFromServers(serverId, servers));
   };
 
-  const data = servers.map((server) => ({
+  const data = servers.map(server => ({
     ...server,
-    key: server.id,
+    key: server.id
   }));
 
   return (

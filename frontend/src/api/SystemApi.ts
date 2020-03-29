@@ -7,7 +7,7 @@ let SYSTEMS = [
     systemServerId: "123",
     systemServerName: "yamut",
     systemTeam: "ultra",
-    info: "Interesting info",
+    info: "Interesting info"
   }),
   new System({
     id: "2",
@@ -15,7 +15,7 @@ let SYSTEMS = [
     systemServerId: "122",
     systemServerName: "eliza",
     systemTeam: "ultra",
-    info: "Interesting info",
+    info: "Interesting info"
   }),
   new System({
     id: "3",
@@ -23,8 +23,8 @@ let SYSTEMS = [
     systemServerId: "124",
     systemServerName: "yarmon",
     systemTeam: "ultra",
-    info: "Interesting info",
-  }),
+    info: "Interesting info"
+  })
 ];
 
 export const getTeamSystems = (teamId: string) => {

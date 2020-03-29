@@ -3,7 +3,6 @@ import { Input, Modal } from "antd";
 import "antd/lib/modal/style/index.css";
 import "antd/lib/button/style/index.css";
 import "./AddModal.css";
-import TextArea from "antd/lib/input/TextArea";
 
 interface AddModalProps {
   title: string;

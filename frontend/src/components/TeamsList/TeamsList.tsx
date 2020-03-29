@@ -40,8 +40,8 @@ const TeamsList = () => {
           setAddTeamVisible(false);
         }}
         newObj={{
-          שם: "",
-          מידע: ""
+          "שם": "",
+          "מידע": ""
         }}
       />
       <List

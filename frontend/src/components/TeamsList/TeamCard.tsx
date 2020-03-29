@@ -5,9 +5,6 @@ import "antd/lib/card/style/index.css";
 import "../General/Card/CardStyle.css";
 import { Link } from "react-router-dom";
 import PropertyList from "../General/List/PropertyList";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEdit } from "@fortawesome/free-regular-svg-icons/faEdit";
-import { faTrashAlt } from "@fortawesome/free-regular-svg-icons/faTrashAlt";
 import CardTitle from "../General/Card/CardTitle";
 
 interface TeamProps {

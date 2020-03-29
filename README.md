@@ -15,28 +15,31 @@ Technologies used:
 - Pyenv
 - AWS Elastic Beanstalk
 
-##### Developer notes
-Install environment on local computer
-```shell script
-poetry install
-poetry run pip install -r requirements.txt
-```
+#### Developer notes
 
-How to migrate?
+##### How to run?
+1. Install & Run on local computer
+    ```shell script
+    poetry install
+    poetry run pip install -r requirements.txt
+    poetry run python manage.py runserver 0:8000
+    ```
+
+2. Run with docker
+    ```shell script
+    docker build -t ophirt/docker-web .
+    docker run -p 8000:8000 ophirt/docker-web
+    ```
+
+3. Run with docker compose
+    ```shell script
+    docker-compose build
+    docker-compose up -d
+    docker-compose down -v
+    ```
+
+##### How to migrate?
 ```shell script
 poetry run python manage.py makemigrations
 poetry run python manage.py migrate
-```
-
-How to run with docker?
-```shell script
-docker build -t ophirt/docker-web .
-docker run -p 8000:8000 ophirt/docker-web
-```
-
-How to run with docker compose?
-```shell script
-docker-compose build
-docker-compose up -d
-docker-compose down -v
 ```

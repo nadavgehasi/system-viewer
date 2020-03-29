@@ -1,9 +1,18 @@
 from rest_framework import serializers
 
-from .models import Server
+from .models import Server, System, Team
 
 
-class ServerSerializer(serializers.HyperlinkedModelSerializer):
+class TeamSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Team
+
+
+class SystemSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = System
+
+
+class ServerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Server
-        fields = ('id', 'name', 'base', 'team')

@@ -5,3 +5,8 @@ services:
     build: frontend
     ports:
     - 80:80
+  backend:
+    build: backend
+    command: poetry run python manage.py runserver 0:8000
+    ports:
+      - 8000:8000

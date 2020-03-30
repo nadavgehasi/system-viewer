@@ -1,5 +1,4 @@
 import { Server } from "../types/server";
-import axios from "axios";
 
 export const getServers = () => {
   return [

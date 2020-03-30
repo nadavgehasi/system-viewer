@@ -1,4 +1,5 @@
 import { Server } from "../types/server";
+
 export const getServers = () => {
   return [
     new Server({
@@ -34,7 +35,7 @@ export const getServers = () => {
       ram: "16GB",
       cores: "24"
     })
-  ];
+   ];
 };
 
 export const deleteServerApi = (serverId: string) => {

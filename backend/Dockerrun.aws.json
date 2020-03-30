@@ -9,5 +9,11 @@
       "ContainerPort": "8000"
     }
   ],
+  "Volumes": [
+    {
+      "HostDirectory": "/var/myapp/database/",
+      "ContainerDirectory": "/myapp/database/"
+    }
+  ],
   "Logging": "/var/log/nginx"
 }

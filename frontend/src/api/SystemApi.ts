@@ -1,4 +1,5 @@
 import { System } from "../types/system";
+import axios from "axios";
 
 let SYSTEMS = [
   new System({
@@ -27,7 +28,10 @@ let SYSTEMS = [
   })
 ];
 
-export const getTeamSystems = (teamId: string) => {
+export const getTeamSystems = (teamId: string, callback: (systems: Array<System>) => void) => {
+  // axios.get(`/api/systems/${tea}`).then(res => {
+  //   teamCallback(res.data);
+  // });
   console.log(`Got request for systems of ${teamId} team`);
   return SYSTEMS;
 };

@@ -7,3 +7,7 @@ build: build-frontend
 run: build
 	docker-compose up
 
+dev-build:
+
+dev: dev-build
+	

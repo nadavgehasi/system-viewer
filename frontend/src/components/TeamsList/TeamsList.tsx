@@ -1,16 +1,24 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import { addTeamApi, deleteTeamApi, getTeams } from "../../api/TeamApi";
 import { List } from "antd";
 import "../General/List/ListStyle.css";
 import TeamCard from "./TeamCard";
-import { deleteTeamFromTeams } from "../../utils/ArrayUtils";
 import AddModal from "../General/Modal/AddModal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import {Team} from "../../types/team";
 
 const TeamsList = () => {
-  const [teams, setTeams] = useState(getTeams());
+  const [teams, setTeams] = useState(Array<Team>());
   const [addTeamVisible, setAddTeamVisible] = useState(false);
+
+  useEffect(() => {
+      getTeams().then(teams => setTeams(teams));
+  }, []);
+
+  const updateTeams = (updatedTeams: Array<Team>): void => {
+        setTeams(updatedTeams)
+    };
 
   const deleteTeam = (teamId: string) => {
     const updatedTeams = deleteTeamApi(teamId);

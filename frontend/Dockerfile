@@ -4,4 +4,4 @@ RUN rm /etc/nginx/conf.d/default.conf
 
 COPY ./nginx.conf /etc/nginx/conf.d/default.conf
 
-COPY ./build /system_viewer
+COPY ./build /system-viewer

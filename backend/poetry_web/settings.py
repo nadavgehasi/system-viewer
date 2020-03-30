@@ -25,7 +25,7 @@ SECRET_KEY = '5=g%9hbff0+$h*sg9eh1v#=q)wy%&#2adejph0izz(y==&60uq'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['dockerweb-env.eba-pbxve5yu.us-east-1.elasticbeanstalk.com', '192.168.0.102']
+ALLOWED_HOSTS = ['dockerweb-env.eba-pbxve5yu.us-east-1.elasticbeanstalk.com', '192.168.0.102', 'localhost', '127.0.0.1']
 
 
 # Application definition

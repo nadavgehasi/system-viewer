@@ -1,5 +1,7 @@
 import { Team } from "../types/team";
 import { deleteTeamFromTeams } from "../utils/ArrayUtils";
+import axios from "axios";
+
 
 let teams: Array<Team> = [
   new Team({
@@ -20,7 +22,10 @@ let teams: Array<Team> = [
 
 let nextId = "3";
 
-export const getTeams = (): Array<Team> => teams;
+export const getTeams = (): Array<Team> => {
+  axios.get('/api/servers').then(res => {console.log(res.data)});
+  return teams;
+};
 
 export const addTeamApi = (name: string, info: string): Array<Team> => {
   teams = [

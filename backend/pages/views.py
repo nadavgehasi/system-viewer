@@ -21,30 +21,14 @@ class TeamViewSet(viewsets.ModelViewSet):
     serializer_class = TeamSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
-    def get_queryset(self):
-        return Team.objects.annotate(
-            total_systems=Count('systems', distinct=True),
-            total_servers=Count('servers', distinct=True)
-        )
-
 
 class SystemViewSet(viewsets.ModelViewSet):
     queryset = System.objects.all().order_by('id')
     serializer_class = SystemSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
-    def get_queryset(self):
-        return System.objects.annotate(
-            total_servers=Count('servers')
-        )
-
 
 class ServerViewSet(viewsets.ModelViewSet):
     queryset = Server.objects.all().order_by('id')
     serializer_class = ServerSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
-
-    def get_queryset(self):
-        return Server.objects.annotate(
-            total_systems=Count('systems'),
-        )

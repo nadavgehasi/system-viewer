@@ -2,6 +2,7 @@
 """Django's command-line utility for administrative tasks."""
 import os
 import sys
+import shutil
 
 
 def main():
@@ -17,5 +18,11 @@ def main():
     execute_from_command_line(sys.argv)
 
 
+def copy_db_if_not_exists():
+    if not os.path.exists('database/db.sqlite3'):
+        shutil.copy2('db.sqlite3.initial', 'database/db.sqlite3')
+
+
 if __name__ == '__main__':
+    copy_db_if_not_exists()
     main()

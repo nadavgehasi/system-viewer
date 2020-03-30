@@ -19,16 +19,16 @@ def home_page_view(request):
 class TeamViewSet(viewsets.ModelViewSet):
     queryset = Team.objects.all().order_by('id')
     serializer_class = TeamSerializer
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    # permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
 
 class SystemViewSet(viewsets.ModelViewSet):
     queryset = System.objects.all().order_by('id')
     serializer_class = SystemSerializer
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    # permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
 
 class ServerViewSet(viewsets.ModelViewSet):
     queryset = Server.objects.all().order_by('id')
     serializer_class = ServerSerializer
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    # permission_classes = [permissions.IsAuthenticatedOrReadOnly]

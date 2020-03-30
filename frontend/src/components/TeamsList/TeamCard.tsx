@@ -1,3 +1,4 @@
+// @ts-ignore
 import React from "react";
 import { Card } from "antd";
 import { Team } from "../../types/team";

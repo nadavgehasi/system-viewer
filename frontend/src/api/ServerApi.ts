@@ -1,4 +1,6 @@
 import { Server } from "../types/server";
+import axios from "axios";
+
 export const getServers = () => {
   return [
     new Server({
@@ -34,7 +36,7 @@ export const getServers = () => {
       ram: "16GB",
       cores: "24"
     })
-  ];
+   ];
 };
 
 export const deleteServerApi = (serverId: string) => {

@@ -19,24 +19,26 @@ Technologies used:
 
 ##### How to run?
 1. Install & Run on local computer
-    ```shell script
-    poetry install
-    poetry run pip install -r requirements.txt
-    poetry run python manage.py runserver 0:8000
-    ```
+   ```shell script
+   poetry install
+   poetry run pip install -r requirements.txt
+   poetry run python manage.py runserver 0:8000
+   ```
 
 2. Run with docker
-    ```shell script
-    docker build -t ophirt/docker-web .
-    docker run -p 8000:8000 ophirt/docker-web
-    ```
+   ```shell script
+   docker build -t ophirt/docker-web .
+   docker run -v /var/myapp/database/:/myapp/database/ -p 8000:8000 --name system-viewer -d ophirt/docker-web
+   docker stop system-viewer
+   docker rm system-viewer
+   ```
 
 3. Run with docker compose
-    ```shell script
-    docker-compose build
-    docker-compose up -d
-    docker-compose down -v
-    ```
+   ```shell script
+   docker-compose build
+   docker-compose up -d
+   docker-compose down -v
+   ```
 
 ##### How to migrate?
 ```shell script

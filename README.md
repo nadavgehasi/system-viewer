@@ -3,7 +3,8 @@
 ### Backend
 
 Deployed on AWS
-http://dockerweb-env.eba-pbxve5yu.us-east-1.elasticbeanstalk.com/
+- http://system-viewer.us-east-1.elasticbeanstalk.com/
+- http://system-viewer-dev.us-east-1.elasticbeanstalk.com/
 
 Technologies used:
 - Python 3.8

@@ -6,7 +6,8 @@ from .models import Server, System, Team
 class ServerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Server
-        fields = '__all__'
+        fields = ('name', 'base', 'status', 'tag', 'team', 'systems', 'cpu_cores', 'memory_total', 'memory_used',
+                  'memory_percent')
 
 
 class SystemSerializer(serializers.ModelSerializer):

@@ -26,7 +26,7 @@ const SystemCard: React.FC<SystemProps> = ({ system, deleteSystem }) => {
         content={{
           "שם השרת": system.servers,
           "שם הצוות": system.team,
-          "מידע חופש": system.info
+          "מידע חופש": system.info,
         }}
       />
     </Card>

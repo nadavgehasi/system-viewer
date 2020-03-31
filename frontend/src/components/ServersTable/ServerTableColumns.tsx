@@ -13,7 +13,7 @@ import {
   SYSTEM_NAME_FIELD,
   TAGS_FIELD,
   TEAM_NAME_FIELD,
-  SERVER_BASE_FIELD
+  SERVER_BASE_FIELD,
 } from "../../types/server";
 import { getColumnByField } from "../../utils/tableColumnsUtils";
 
@@ -26,7 +26,7 @@ const getServersTableColumns = (deleteServer: (serverId: string) => void) => {
           <FontAwesomeIcon icon={faEdit} />
           <a> {text}</a>
         </span>
-      )
+      ),
     },
     { ...getColumnByField("בסיס", SERVER_BASE_FIELD) },
     { ...getColumnByField("צוות", TEAM_NAME_FIELD) },
@@ -45,9 +45,10 @@ const getServersTableColumns = (deleteServer: (serverId: string) => void) => {
                 {tag.toUpperCase()}
               </Tag>
             );
-          }})}
+          }}
+          )}
         </span>
-      )
+      ),
     },
     {
       ...getColumnByField("סטטוס", STATUS_FIELD),
@@ -56,7 +57,7 @@ const getServersTableColumns = (deleteServer: (serverId: string) => void) => {
           <FontAwesomeIcon icon={faRedoAlt} />
           <a> {text}</a>
         </span>
-      )
+      ),
     },
     { ...getColumnByField("ראם", RAM_FIELD) },
     { ...getColumnByField("מספר ליבות", CORES_FIELD) },
@@ -67,11 +68,11 @@ const getServersTableColumns = (deleteServer: (serverId: string) => void) => {
         <span>
           <FontAwesomeIcon
             icon={faTrashAlt}
-            onClick={event => deleteServer(record.id)}
+            onClick={(event) => deleteServer(record.id)}
           />
         </span>
-      )
-    }
+      ),
+    },
   ];
 };
 

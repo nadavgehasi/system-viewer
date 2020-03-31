@@ -28,7 +28,7 @@ const TeamCard: React.FC<TeamProps> = ({ team, deleteTeam }) => {
         content={{
           "מספר מערכות": team.systems.length,
           "מספר שרתים": team.servers.length,
-          "מידע חופשי": team.info
+          "מידע חופשי": team.info,
         }}
       />
     </Card>

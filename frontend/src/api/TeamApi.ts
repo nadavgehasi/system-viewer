@@ -7,16 +7,16 @@ const convertResultToTeams = (res: any): Array<Team> => {
 };
 
 export const getTeams = (): Promise<Array<Team>> => {
-  return axios.get('/api/teams/').then(convertResultToTeams);
+  return axios.get("/api/teams/").then(convertResultToTeams);
 };
 
 export const addTeamApi = (name: string, info: string): Promise<any> => {
-  return axios.post('/api/teams/', {
-    name : name,
-    info : info,
+  return axios.post("/api/teams/", {
+    name: name,
+    info: info,
   });
 };
 
 export const deleteTeamApi = (teamId: string): Promise<any> => {
-  return axios.delete(`/api/teams/${teamId}`)
+  return axios.delete(`/api/teams/${teamId}`);
 };

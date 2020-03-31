@@ -33,9 +33,9 @@ const getServersTableColumns = (deleteServer: (serverId: string) => void) => {
     { ...getColumnByField("מערכת", SYSTEM_NAME_FIELD) },
     {
       ...getColumnByField("מבצעי / טסטים", TAGS_FIELD),
-      render: (tags: Array<string>) => (
+      render: (tag: string) => (
         <span>
-          {tags.map(tag => {
+          {() => {
             let color = tag.length > 5 ? "geekblue" : "green";
             if (tag === "Tests") {
               color = "volcano";
@@ -45,7 +45,7 @@ const getServersTableColumns = (deleteServer: (serverId: string) => void) => {
                 {tag.toUpperCase()}
               </Tag>
             );
-          })}
+          }})}
         </span>
       )
     },

@@ -26,8 +26,8 @@ const TeamCard: React.FC<TeamProps> = ({ team, deleteTeam }) => {
     >
       <PropertyList
         content={{
-          "מספר מערכות": team.numberOfSystems,
-          "מספר שרתים": team.numberOfServers,
+          "מספר מערכות": team.systems.length,
+          "מספר שרתים": team.servers.length,
           "מידע חופשי": team.info
         }}
       />

@@ -21,14 +21,20 @@ const TeamsList = () => {
     };
 
   const deleteTeam = (teamId: string) => {
-    const updatedTeams = deleteTeamApi(teamId);
-    setTeams(updatedTeams);
+    deleteTeamApi(teamId).then(res => {
+        // TODO Add message here
+        console.log(res);
+        getTeams().then(teams => setTeams(teams));
+    });
   };
 
   const addTeam = (e: React.MouseEvent<HTMLElement>, newTeamInfo: any) => {
     setAddTeamVisible(false);
-    const updatedTeams = addTeamApi(newTeamInfo["שם"], newTeamInfo["מידע"]);
-    setTeams(updatedTeams);
+    addTeamApi(newTeamInfo["שם"], newTeamInfo["מידע"]).then(res => {
+        // TODO Add message here
+        console.log(res);
+        getTeams().then(teams => setTeams(teams));
+    });
   };
 
   return (

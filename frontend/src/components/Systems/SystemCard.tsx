@@ -24,8 +24,8 @@ const SystemCard: React.FC<SystemProps> = ({ system, deleteSystem }) => {
     >
       <PropertyList
         content={{
-          "שם השרת": system.systemServerName,
-          "שם הצוות": system.systemTeam,
+          "שם השרת": system.servers,
+          "שם הצוות": system.team,
           "מידע חופש": system.info
         }}
       />

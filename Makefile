@@ -1,7 +1,7 @@
 build-frontend:
 	cd frontend && npm run build
 
-build: build-frontend
+build: 
 	docker-compose build
 
 run: build

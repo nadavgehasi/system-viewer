@@ -23,7 +23,7 @@ const TeamsList = () => {
   const deleteTeam = (teamId: string) => {
     deleteTeamApi(teamId).then(res => {
         // TODO Add message here
-        console.log(res);
+        // console.log(res);
         getTeams().then(teams => setTeams(teams));
     });
   };

@@ -29,6 +29,6 @@ export const getColumnByField = (
     dataIndex: serverFieldName,
     key: serverFieldName,
     sorter: (firstServer: Server, secondServer: Server) =>
-      sortByField(firstServer, secondServer, serverFieldName)
+      sortByField(firstServer, secondServer, serverFieldName),
   };
 };

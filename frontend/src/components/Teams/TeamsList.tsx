@@ -1,26 +1,40 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { addTeamApi, deleteTeamApi, getTeams } from "../../api/TeamApi";
 import { List } from "antd";
 import "../General/List/ListStyle.css";
 import TeamCard from "./TeamCard";
-import { deleteTeamFromTeams } from "../../utils/ArrayUtils";
 import AddModal from "../General/Modal/AddModal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { Team } from "../../types/team";
 
 const TeamsList = () => {
-  const [teams, setTeams] = useState(getTeams());
+  const [teams, setTeams] = useState(Array<Team>());
   const [addTeamVisible, setAddTeamVisible] = useState(false);
 
-  const deleteTeam = (teamId: string) => {
-    const updatedTeams = deleteTeamApi(teamId);
+  useEffect(() => {
+    getTeams().then((teams) => setTeams(teams));
+  }, []);
+
+  const updateTeams = (updatedTeams: Array<Team>): void => {
     setTeams(updatedTeams);
+  };
+
+  const deleteTeam = (teamId: string) => {
+    deleteTeamApi(teamId).then((res) => {
+      // TODO Add message here
+      // console.log(res);
+      getTeams().then((teams) => setTeams(teams));
+    });
   };
 
   const addTeam = (e: React.MouseEvent<HTMLElement>, newTeamInfo: any) => {
     setAddTeamVisible(false);
-    const updatedTeams = addTeamApi(newTeamInfo["שם"], newTeamInfo["מידע"]);
-    setTeams(updatedTeams);
+    addTeamApi(newTeamInfo["שם"], newTeamInfo["מידע"]).then((res) => {
+      // TODO Add message here
+      console.log(res);
+      getTeams().then((teams) => setTeams(teams));
+    });
   };
 
   return (
@@ -40,13 +54,13 @@ const TeamsList = () => {
           setAddTeamVisible(false);
         }}
         newObj={{
-          "שם": "",
-          "מידע": ""
+          שם: "",
+          מידע: "",
         }}
       />
       <List
         dataSource={teams}
-        renderItem={team => <TeamCard team={team} deleteTeam={deleteTeam} />}
+        renderItem={(team) => <TeamCard team={team} deleteTeam={deleteTeam} />}
       />
     </div>
   );

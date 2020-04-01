@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Table } from "antd";
 import "antd/lib/table/style/index.css";
 import "antd/lib/tag/style/index.css";
@@ -7,6 +7,9 @@ import getServersTableColumns from "./ServerTableColumns";
 import "./ServersTable.css";
 import { deleteServerApi, getServers } from "../../api/ServerApi";
 import { deleteServerFromServers } from "../../utils/ArrayUtils";
+import { getTeamSystems } from "../../api/SystemApi";
+import { System } from "../../types/system";
+import { Server } from "../../types/server";
 
 // interface ServersTableProps {
 //     servers: Array<Server>;
@@ -14,16 +17,22 @@ import { deleteServerFromServers } from "../../utils/ArrayUtils";
 // }
 
 const ServersTable: React.FC = () => {
-  const [servers, setServers] = useState(getServers());
+  const [servers, setServers] = useState(Array<Server>());
+
+  useEffect(() => {
+    getServers().then((servers: Array<Server>) => {
+      setServers(servers);
+    });
+  }, []);
 
   const deleteServer = (serverId: string) => {
     deleteServerApi(serverId);
     setServers(deleteServerFromServers(serverId, servers));
   };
 
-  const data = servers.map(server => ({
+  const data = servers.map((server) => ({
     ...server,
-    key: server.id
+    key: server.id,
   }));
 
   return (

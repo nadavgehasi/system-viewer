@@ -17,7 +17,7 @@ const AddModal: React.FC<AddModalProps> = ({
   visible,
   onOk,
   onCancel,
-  newObj
+  newObj,
 }) => {
   const [newObject, setNewObject] = useState(newObj);
 
@@ -38,12 +38,12 @@ const AddModal: React.FC<AddModalProps> = ({
       okText={"הוסף"}
       cancelText={"בטל"}
     >
-      {Object.entries(newObject).map(objectEntry => (
+      {Object.entries(newObject).map((objectEntry) => (
         <h3>
           <span>{objectEntry[0]}: </span>
           <Input
             placeholder={String(objectEntry[1])}
-            onChange={e => {
+            onChange={(e) => {
               newObj[objectEntry[0]] = e.target.value;
               setNewObject(newObj);
             }}

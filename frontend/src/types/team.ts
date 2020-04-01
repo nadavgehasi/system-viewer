@@ -1,23 +1,23 @@
 interface TeamInterface {
   id: string;
   name: string;
-  numberOfServers: number;
-  numberOfSystems: number;
+  servers: Array<string>;
+  systems: Array<string>;
   info: string;
 }
 
 export class Team implements TeamInterface {
   id: string;
   name: string;
-  numberOfServers: number;
-  numberOfSystems: number;
+  servers: Array<string>;
+  systems: Array<string>;
   info: string;
 
   constructor(team: TeamInterface) {
     this.id = team.id;
     this.name = team.name;
-    this.numberOfServers = team.numberOfServers;
-    this.numberOfSystems = team.numberOfSystems;
+    this.servers = team.servers;
+    this.systems = team.systems;
     this.info = team.info;
   }
 }

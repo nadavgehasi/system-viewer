@@ -9,3 +9,4 @@ build:
 
 run: build
 	docker-compose up
+

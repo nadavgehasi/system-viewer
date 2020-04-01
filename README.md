@@ -4,7 +4,6 @@
 
 Deployed on AWS
 - http://system-viewer.us-east-1.elasticbeanstalk.com/
-- http://system-viewer-dev.us-east-1.elasticbeanstalk.com/
 
 Technologies used:
 - Python 3.8
@@ -19,19 +18,21 @@ Technologies used:
 #### Developer notes
 
 ##### How to run?
-1. Install & Run on local computer
+1. Run on local computer
    ```shell script
+   cd backend
    poetry install
    poetry run pip install -r requirements.txt
-   poetry run python manage.py runserver 0:8000
+   ./run.sh
+   rm -r database
    ```
 
 2. Run with docker
    ```shell script
-   docker build -t ophirt/docker-web .
-   docker run -v /var/myapp/database/:/myapp/database/ -p 8000:8000 --name system-viewer -d ophirt/docker-web
-   docker stop system-viewer
-   docker rm system-viewer
+   docker build -t system-viewer-backend backend
+   docker run -v backend-storage:/myapp/database/ -p 8000:8000 --name backend -d system-viewer-backend
+   docker stop backend
+   docker rm backend
    ```
 
 3. Run with docker compose
@@ -40,9 +41,3 @@ Technologies used:
    docker-compose up -d
    docker-compose down -v
    ```
-
-##### How to migrate?
-```shell script
-poetry run python manage.py makemigrations
-poetry run python manage.py migrate
-```

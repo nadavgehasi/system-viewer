@@ -7,6 +7,9 @@ authors = ["Your Name <you@example.com>"]
 [tool.poetry.dependencies]
 python = "^3.8"
 Django = "^3.0.4"
+paramiko = "^2.7.1"
+graphyte = "^1.6.0"
+requests = "^2.23.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^4.6"

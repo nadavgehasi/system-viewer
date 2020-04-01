@@ -1,2 +1,3 @@
 djangorestframework==3.11.0
 drf-url-filters==0.5.1
+djangorestframework_simplejwt==4.4.0

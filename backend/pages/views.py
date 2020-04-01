@@ -20,7 +20,7 @@ def home_page_view(request):
 class TeamViewSet(FiltersMixin, viewsets.ModelViewSet):
     queryset = Team.objects.prefetch_related('systems', 'servers').all().order_by('id')
     serializer_class = TeamSerializer
-    # permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    permission_classes = [permissions.IsAuthenticated]
 
     filter_mappings = {
         'id': 'id',
@@ -32,7 +32,7 @@ class TeamViewSet(FiltersMixin, viewsets.ModelViewSet):
 class SystemViewSet(FiltersMixin, viewsets.ModelViewSet):
     queryset = System.objects.prefetch_related('servers').all().order_by('id')
     serializer_class = SystemSerializer
-    # permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    permission_classes = [permissions.IsAuthenticated]
 
     filter_mappings = {
         'id': 'id',
@@ -46,7 +46,7 @@ class SystemViewSet(FiltersMixin, viewsets.ModelViewSet):
 class ServerViewSet(FiltersMixin, viewsets.ModelViewSet):
     queryset = Server.objects.prefetch_related('systems').all().order_by('id')
     serializer_class = ServerSerializer
-    # permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    permission_classes = [permissions.IsAuthenticated]
 
     filter_mappings = {
         'id': 'id',

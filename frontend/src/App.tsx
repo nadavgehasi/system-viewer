@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 import AppMenu from "./components/Menu/AppMenu";
 import ServersTable from "./components/ServersTable/ServersTable";
-import TeamsList from "./components/TeamsList/TeamsList";
+import TeamsList from "./components/Teams/TeamsList";
 import SystemsList from "./components/Systems/SystemsList";
 import "./App.css";
 

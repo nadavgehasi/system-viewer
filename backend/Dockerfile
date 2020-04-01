@@ -12,7 +12,7 @@ RUN poetry install --no-root
 RUN poetry run pip install -r requirements.txt
 
 COPY . .
-RUN poetry install
+#RUN poetry install
 
 EXPOSE 8000
 

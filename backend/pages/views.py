@@ -21,7 +21,7 @@ class TeamViewSet(FiltersMixin, viewsets.ModelViewSet):
     queryset = Team.objects.prefetch_related('systems', 'servers').all().order_by('id')
     serializer_class = TeamSerializer
     # permission_classes = [permissions.IsAuthenticatedOrReadOnly]
-    # add a mapping of query_params to db_columns(queries)
+
     filter_mappings = {
         'id': 'id',
         'name': 'name',
@@ -33,7 +33,7 @@ class SystemViewSet(FiltersMixin, viewsets.ModelViewSet):
     queryset = System.objects.prefetch_related('servers').all().order_by('id')
     serializer_class = SystemSerializer
     # permission_classes = [permissions.IsAuthenticatedOrReadOnly]
-    # add a mapping of query_params to db_columns(queries)
+
     filter_mappings = {
         'id': 'id',
         'name': 'name',
@@ -47,13 +47,12 @@ class ServerViewSet(FiltersMixin, viewsets.ModelViewSet):
     queryset = Server.objects.prefetch_related('systems').all().order_by('id')
     serializer_class = ServerSerializer
     # permission_classes = [permissions.IsAuthenticatedOrReadOnly]
-    # add a mapping of query_params to db_columns(queries)
+
     filter_mappings = {
         'id': 'id',
         'name': 'name',
         'base': 'base',
         'status': 'status',
         'tag': 'tag',
-        'cores': 'cores',
         'team': 'team',
     }

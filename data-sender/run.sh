@@ -5,6 +5,7 @@ touch /etc/crontab /etc/cron.*/*
 
 # Start cron service
 service cron start
+service ssh start
 
 # Hand off to the CMD
 exec "$@"

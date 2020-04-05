@@ -2,8 +2,11 @@
 
 import paramiko
 import graphyte
+import requests
+import socket
 
 GRAPHITE_SERVER = 'graphite'
+BACKEND_SERVER = 'backend:8000'
 
 CPU_COUNT_COMMAND = ("nproc", 'cpu')
 MEMORY_USED_PERCENT_COMMAND = ('awk \'/^Mem/ {printf("%u", 100*$3/$2);}\' <(free -m)', 'memory.percent')
@@ -11,15 +14,13 @@ MEMORY_TOTAL_COUNT_COMMAND = ("awk '/^Mem/ {print $2}' <(free -m)", 'memory.tota
 MEMORY_USED_COUNT_COMMAND = ("awk '/^Mem/ {print $3}' <(free -m)", 'memory.used')
 COMMANDS = [CPU_COUNT_COMMAND, MEMORY_TOTAL_COUNT_COMMAND, MEMORY_USED_COUNT_COMMAND, MEMORY_USED_PERCENT_COMMAND]
 
-SSH_PORT = 22
+REQUEST_URL = f"http://{BACKEND_SERVER}/api/servers/?format=json"
+DOCKER_HOSTNAME = socket.gethostname()
 
-HOSTS = [
-    (('192.168.0.104', 'armon-yarkon'), 'root', 'root'),
-    (('172.17.0.1', 'armon-yarkon-2'), 'root', 'root'),
-    (('192.168.0.104', 'badid-mif'), 'root', 'root'),
-    (('172.17.0.1', 'docker_host'), 'root', 'root'),
-    (('172.17.0.1', 'localhost'), 'root', 'root'),
-]
+
+def get_servers():
+    r = requests.get(REQUEST_URL)
+    return map(lambda server: server['name'], r.json())
 
 
 def main():
@@ -29,15 +30,17 @@ def main():
     client.load_system_host_keys()
     client.set_missing_host_key_policy(paramiko.WarningPolicy)
 
-    for (host_ip, host_name), username, password in HOSTS:
+    for host_name in get_servers():
         try:
-            client.connect(host_ip, port=SSH_PORT, username=username, password=password)
+            # CHANGE BEFORE PRODUCTION
+            client.connect(DOCKER_HOSTNAME)
             for command, graphite_key in COMMANDS:
                 stdin, stdout, stderr = client.exec_command(command, get_pty=True)
                 cpu_count = int(stdout.read().decode('ascii').strip())
                 graphyte.send(f'{host_name}.{graphite_key}', cpu_count)
-                print(f'{host_ip} {host_name} {graphite_key} {cpu_count}')
-
+                print(f'{host_name} {graphite_key} {cpu_count}')
+        except:
+            print(f'Unable to connect {host_name}')
         finally:
             client.close()
 

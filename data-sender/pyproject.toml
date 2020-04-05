@@ -8,6 +8,7 @@ authors = ["Ophir Taieb"]
 python = "^3.8"
 paramiko = "^2.7.1"
 graphyte = "^1.6.0"
+requests = "^2.23.0"
 
 [tool.poetry.dev-dependencies]
 

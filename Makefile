@@ -17,8 +17,9 @@ run: build
 build-deploy:
 	docker build -t ophirt/sv-backend backend
 	docker build -t ophirt/sv-frontend frontend
+	docker build -t ophirt/sv-data-sender data-sender
 
 deploy: build-deploy
 	docker push ophirt/sv-backend
 	docker push ophirt/sv-frontend
-
+	docker push ophirt/sv-data-sender

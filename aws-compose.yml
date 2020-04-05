@@ -1,0 +1,23 @@
+version: '2'
+
+services:
+  backend:
+    image: ophirt/sv-backend
+    cpu_shares: 100
+    mem_limit: 131072000
+    ports:
+      - 8000:8000
+    volumes:
+      - backend-storage:/myapp/database/
+
+  frontend:
+    image: ophirt/sv-frontend
+    links:
+      - backend
+    cpu_shares: 100
+    mem_limit: 131072000
+    ports:
+      - 80:80
+
+volumes:
+  backend-storage:

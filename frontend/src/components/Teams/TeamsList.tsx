@@ -1,68 +1,69 @@
-import React, { useEffect, useState } from "react";
-import { addTeamApi, deleteTeamApi, getTeams } from "../../api/TeamApi";
-import { List } from "antd";
+import React from "react";
+import {
+  addTeamApi,
+  deleteTeamApi,
+  getTeams,
+  updateTeamApi,
+} from "../../api/TeamApi";
 import "../General/List/ListStyle.css";
-import TeamCard from "./TeamCard";
-import AddModal from "../General/Modal/AddModal";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { Team } from "../../types/team";
+import EditableList from "../General/List/EditableList";
 
 const TeamsList = () => {
-  const [teams, setTeams] = useState(Array<Team>());
-  const [addTeamVisible, setAddTeamVisible] = useState(false);
 
-  useEffect(() => {
-    getTeams().then((teams) => setTeams(teams));
-  }, []);
-
-  const updateTeams = (updatedTeams: Array<Team>): void => {
-    setTeams(updatedTeams);
+  const getAddTeamContent = (): any => {
+    return {
+      "שם": "",
+      "מידע": "",
+    };
   };
 
-  const deleteTeam = (teamId: string) => {
-    deleteTeamApi(teamId).then((res) => {
-      // TODO Add message here
-      // console.log(res);
-      getTeams().then((teams) => setTeams(teams));
-    });
+  const getUpdateTeamContent = (team: Team): any => {
+    return {
+      id: team.id,
+      name: team.name,
+      info: team.info,
+    };
   };
 
-  const addTeam = (e: React.MouseEvent<HTMLElement>, newTeamInfo: any) => {
-    setAddTeamVisible(false);
-    addTeamApi(newTeamInfo["שם"], newTeamInfo["מידע"]).then((res) => {
-      // TODO Add message here
-      console.log(res);
-      getTeams().then((teams) => setTeams(teams));
-    });
+  const getTeamFromContent = (team: any): any => {
+    return {
+      id: team["id"],
+      name: team["שם"],
+      info: team["מידע"],
+    };
+  };
+
+  const itemToPropertyList = (team: any) => {
+      return {
+          "מספר מערכות": team.systems.length,
+          "מספר שרתים": team.servers.length,
+          "מידע חופשי": team.info,
+      }
+  };
+
+  const addTeam = (newTeam: any) => {
+    return addTeamApi(newTeam["שם"], newTeam["מידע"]);
+  };
+
+  const updateTeam = (item: any) => {
+    return updateTeamApi(getTeamFromContent(item));
+  };
+
+  const itemToLink = (item: any): string => {
+    return `/teams/${item.id}`;
   };
 
   return (
-    <div>
-      <FontAwesomeIcon
-        icon={faPlus}
-        style={{ float: "right" }}
-        onClick={() => {
-          setAddTeamVisible(true);
-        }}
-      />
-      <AddModal
-        title={"הוספת צוות"}
-        visible={addTeamVisible}
-        onOk={addTeam}
-        onCancel={(e: React.MouseEvent<HTMLElement>, newTeamInfo: any) => {
-          setAddTeamVisible(false);
-        }}
-        newObj={{
-          שם: "",
-          מידע: "",
-        }}
-      />
-      <List
-        dataSource={teams}
-        renderItem={(team) => <TeamCard team={team} deleteTeam={deleteTeam} />}
-      />
-    </div>
+    <EditableList getListContent={getTeams}
+                  addItemApi={addTeam}
+                  deleteItemApi={deleteTeamApi}
+                  updateItemApi={updateTeam}
+                  itemToAddModal={getAddTeamContent}
+                  itemToUpdateModal={getUpdateTeamContent}
+                  modalTitle="הוספת צוות"
+                  itemToPropertyList={itemToPropertyList}
+                  itemToLink={itemToLink}/>
   );
 };
 

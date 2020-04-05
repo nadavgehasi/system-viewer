@@ -46,7 +46,6 @@ const getServersTableColumns = (deleteServer: (serverId: string) => void) => {
               </Tag>
             );
           }}
-          )}
         </span>
       ),
     },

@@ -4,21 +4,27 @@ import { faTrashAlt } from "@fortawesome/free-regular-svg-icons/faTrashAlt";
 import React, { ReactElement } from "react";
 
 interface CardTitleProps {
-  id: string;
   title: ReactElement;
-  deleteCard: (cardId: string) => void;
+  deleteCard: () => void;
+  updateCard: () => void;
 }
 
-const CardTitle: React.FC<CardTitleProps> = ({ id, title, deleteCard }) => {
+const CardTitle: React.FC<CardTitleProps> = ({
+  title,
+  deleteCard,
+  updateCard,
+}) => {
   return (
     <div>
-      <FontAwesomeIcon icon={faEdit} style={{ float: "right" }} />
+      <FontAwesomeIcon
+        icon={faEdit}
+        style={{ float: "right" }}
+        onClick={() => updateCard()}
+      />
       {title}
       <FontAwesomeIcon
         icon={faTrashAlt}
-        onClick={() => {
-          deleteCard(id);
-        }}
+        onClick={deleteCard}
         style={{ float: "left" }}
       />
     </div>

@@ -9,16 +9,21 @@ import CardTitle from "../General/Card/CardTitle";
 interface SystemProps {
   system: System;
   deleteSystem: (systemId: string) => void;
+  updateSystem: (system: System) => void;
 }
 
-const SystemCard: React.FC<SystemProps> = ({ system, deleteSystem }) => {
+const SystemCard: React.FC<SystemProps> = ({
+  system,
+  deleteSystem,
+  updateSystem,
+}) => {
   return (
     <Card
       title={
         <CardTitle
-          id={system.id}
           title={<div style={{ display: "contents" }}>{system.name}</div>}
-          deleteCard={deleteSystem}
+          deleteCard={() => deleteSystem(system.id)}
+          updateCard={() => updateSystem(system)}
         />
       }
     >
@@ -26,6 +31,7 @@ const SystemCard: React.FC<SystemProps> = ({ system, deleteSystem }) => {
         content={{
           "שם השרת": system.servers,
           "שם הצוות": system.team,
+          צלע: system.universe,
           "מידע חופש": system.info,
         }}
       />

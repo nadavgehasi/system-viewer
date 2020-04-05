@@ -7,7 +7,7 @@ import "./AppMenu.css";
 
 const AppMenu = () => {
   return (
-    <Menu defaultSelectedKeys={["/table"]}>
+    <Menu defaultSelectedKeys={["/teams"]}>
       <Menu.Item key="/table">
         <Link to="table">שרתים</Link>
       </Menu.Item>

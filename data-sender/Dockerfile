@@ -10,6 +10,7 @@ RUN apt-get install -y python3-pip
 RUN apt-get install -y python3.8-venv
 RUN apt-get install -y cron
 RUN apt-get install -y openssh-client
+RUN apt-get install -y openssh-server
 
 RUN python3.8 -m pip install poetry
 COPY pyproject.toml poetry.lock /myapp/
@@ -18,7 +19,10 @@ RUN poetry install --no-root
 
 COPY . .
 
-RUN echo "*/2 * * * * cd /myapp/ && /usr/local/bin/poetry run python /myapp/ssh-sender.py" >> mycron
+RUN mkdir /root/.ssh
+COPY id_rsa id_rsa.pub authorized_keys /root/.ssh/
+
+RUN echo "*/2 * * * * . $HOME/.profile; cd /myapp/ && /usr/local/bin/poetry run python /myapp/ssh-sender.py >> /var/log/cron.log 2>&1" >> mycron
 RUN crontab mycron
 RUN rm mycron
 

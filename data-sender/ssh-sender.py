@@ -3,7 +3,7 @@
 import paramiko
 import graphyte
 import requests
-import os
+import socket
 
 GRAPHITE_SERVER = 'graphite'
 BACKEND_SERVER = 'backend:8000'
@@ -15,7 +15,7 @@ MEMORY_USED_COUNT_COMMAND = ("awk '/^Mem/ {print $3}' <(free -m)", 'memory.used'
 COMMANDS = [CPU_COUNT_COMMAND, MEMORY_TOTAL_COUNT_COMMAND, MEMORY_USED_COUNT_COMMAND, MEMORY_USED_PERCENT_COMMAND]
 
 REQUEST_URL = f"http://{BACKEND_SERVER}/api/servers/?format=json"
-DOCKER_HOST_IP = '172.17.0.1'
+DOCKER_HOSTNAME = socket.gethostname()
 
 
 def get_servers():
@@ -33,7 +33,7 @@ def main():
     for host_name in get_servers():
         try:
             # CHANGE BEFORE PRODUCTION
-            client.connect(DOCKER_HOST_IP)
+            client.connect(DOCKER_HOSTNAME)
             for command, graphite_key in COMMANDS:
                 stdin, stdout, stderr = client.exec_command(command, get_pty=True)
                 cpu_count = int(stdout.read().decode('ascii').strip())

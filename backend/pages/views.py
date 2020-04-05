@@ -7,8 +7,8 @@ from django.http import HttpResponse, JsonResponse
 
 from rest_framework import viewsets
 
-from .serializers import ServerSerializer, SystemSerializer, TeamSerializer
-from .models import Server, System, Team
+from .serializers import ServerSerializer, SystemSerializer, TeamSerializer, UniverseSerializer, BaseSerializer
+from .models import Server, System, Team, Universe, Base
 from rest_framework import permissions, generics
 from filters.mixins import FiltersMixin
 
@@ -40,6 +40,28 @@ class SystemViewSet(FiltersMixin, viewsets.ModelViewSet):
         'info': 'info',
         'universe': 'universe',
         'team': 'team',
+    }
+
+
+class UniverseViewSet(FiltersMixin, viewsets.ModelViewSet):
+    queryset = Universe.objects.prefetch_related('systems').all().order_by('id')
+    serializer_class = UniverseSerializer
+    # permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+
+    filter_mappings = {
+        'id': 'id',
+        'name': 'name',
+        'team': 'team',
+    }
+
+
+class BaseViewSet(FiltersMixin, viewsets.ModelViewSet):
+    queryset = Base.objects.all().order_by('id')
+    serializer_class = BaseSerializer
+    # permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+
+    filter_mappings = {
+        'id': 'id',
     }
 
 

@@ -10,4 +10,4 @@ def get_from_graphite(server, field):
         r = requests.get(REQUEST_URL.format(server, field))
         return r.json()[0][u'datapoints'][-1][0]
     except:
-        return 0
+        return 'N/A'

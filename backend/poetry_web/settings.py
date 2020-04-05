@@ -24,7 +24,7 @@ SECRET_KEY = '5=g%9hbff0+$h*sg9eh1v#=q)wy%&#2adejph0izz(y==&60uq'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.0.104', 'localhost', '127.0.0.1', 'system-viewer.us-east-1.elasticbeanstalk.com',
+ALLOWED_HOSTS = ['192.168.0.24', 'localhost', '127.0.0.1', 'system-viewer.us-east-1.elasticbeanstalk.com',
                  'system-viewer-dev.us-east-1.elasticbeanstalk.com']
 
 # Application definition

@@ -14,9 +14,9 @@ COMMANDS = [CPU_COUNT_COMMAND, MEMORY_TOTAL_COUNT_COMMAND, MEMORY_USED_COUNT_COM
 SSH_PORT = 22
 
 HOSTS = [
-    (('192.168.0.104', 'armon-yarkon'), 'root', 'root'),
+    (('192.168.0.24', 'armon-yarkon'), 'root', 'root'),
     (('172.17.0.1', 'armon-yarkon-2'), 'root', 'root'),
-    (('192.168.0.104', 'badid-mif'), 'root', 'root'),
+    (('192.168.0.24', 'badid-mif'), 'root', 'root'),
     (('172.17.0.1', 'docker_host'), 'root', 'root'),
     (('172.17.0.1', 'localhost'), 'root', 'root'),
 ]

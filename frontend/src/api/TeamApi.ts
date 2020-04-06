@@ -1,4 +1,4 @@
-import { Team } from "../types/team";
+import {Team} from "../types/team";
 import axios from "axios";
 
 const convertResultToTeams = (res: any): Array<Team> => {
@@ -7,7 +7,10 @@ const convertResultToTeams = (res: any): Array<Team> => {
 };
 
 export const getTeams = (): Promise<Array<Team>> => {
-  return axios.get("/api/teams/").then(convertResultToTeams);
+  return axios.get("/api/teams/", {
+    params: {},
+    headers: {'Authorization': 'Bearer ' + sessionStorage.getItem('access')}
+  }).then(convertResultToTeams);
 };
 
 export const addTeamApi = (name: string, info: string): Promise<any> => {

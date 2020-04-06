@@ -1,17 +1,12 @@
 import axios from "axios";
 import createAuthRefreshInterceptor from "axios-auth-refresh";
 
-const refreshAuthLogic = (failedRequest: any) => {
-  if (getAccessToken() != '') {
-    axios.post('/api/refresh/').then(tokenRefreshResponse => {
-      sessionStorage.setItem('access', tokenRefreshResponse.data.access);
-      failedRequest.response.config.headers['Authorization'] = 'Bearer ' + tokenRefreshResponse.data.access;
-      return Promise.resolve();
-    });
-  } else {
-    return Promise.reject();
-  }
-};
+const refreshAuthLogic = (failedRequest: any) => axios.post('/api/refresh/', {'refresh': sessionStorage.getItem('refresh')})
+  .then(tokenRefreshResponse => {
+    sessionStorage.setItem('access', tokenRefreshResponse.data.access);
+    failedRequest.response.config.headers['Authorization'] = 'Bearer ' + tokenRefreshResponse.data.access;
+    return Promise.resolve();
+  });
 
 createAuthRefreshInterceptor(axios, refreshAuthLogic);
 

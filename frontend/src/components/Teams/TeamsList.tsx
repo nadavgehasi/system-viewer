@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from "react";
-import { addTeamApi, deleteTeamApi, getTeams } from "../../api/TeamApi";
-import { loginApi } from "../../api/LoginApi";
-import { List } from "antd";
+import React, {useEffect, useState} from "react";
+import {addTeamApi, deleteTeamApi, getTeams} from "../../api/TeamApi";
+import {loginApi} from "../../api/LoginApi";
+import {List} from "antd";
 import "../General/List/ListStyle.css";
 import TeamCard from "./TeamCard";
 import AddModal from "../General/Modal/AddModal";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus, faSignInAlt } from "@fortawesome/free-solid-svg-icons";
-import { Team } from "../../types/team";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faPlus, faSignInAlt, faSignOutAlt} from "@fortawesome/free-solid-svg-icons";
+import {Team} from "../../types/team";
 import LoginModal from "../Login/LoginModal";
 
 const TeamsList = () => {
@@ -53,7 +53,7 @@ const TeamsList = () => {
     <div>
       <FontAwesomeIcon
         icon={faPlus}
-        style={{ float: "right" }}
+        style={{float: "right"}}
         onClick={() => {
           setAddTeamVisible(true);
         }}
@@ -61,9 +61,19 @@ const TeamsList = () => {
       <br/>
       <FontAwesomeIcon
         icon={faSignInAlt}
-        style={{ float: "right" }}
+        style={{float: "right"}}
         onClick={() => {
           setLoginVisible(true);
+        }}
+      />
+      <br/>
+      <FontAwesomeIcon
+        icon={faSignOutAlt}
+        style={{float: "right"}}
+        onClick={() => {
+          sessionStorage.setItem('refresh', '');
+          sessionStorage.setItem('access', '');
+          setTeams(Array<Team>());
         }}
       />
       <LoginModal
@@ -92,7 +102,7 @@ const TeamsList = () => {
       />
       <List
         dataSource={teams}
-        renderItem={(team) => <TeamCard team={team} deleteTeam={deleteTeam} />}
+        renderItem={(team) => <TeamCard team={team} deleteTeam={deleteTeam}/>}
       />
     </div>
   );

@@ -5,12 +5,10 @@ import {
   getTeams,
   updateTeamApi,
 } from "../../api/TeamApi";
-import "../General/List/ListStyle.css";
 import { Team } from "../../types/team";
 import EditableList from "../General/List/EditableList";
 
 const TeamsList = () => {
-
   const getAddTeamContent = (): any => {
     return {
       "שם": "",
@@ -35,11 +33,11 @@ const TeamsList = () => {
   };
 
   const itemToPropertyList = (team: any) => {
-      return {
-          "מספר מערכות": team.systems.length,
-          "מספר שרתים": team.servers.length,
-          "מידע חופשי": team.info,
-      }
+    return {
+      "מספר מערכות": team.systems.length,
+      "מספר שרתים": team.servers.length,
+      "מידע חופשי": team.info,
+    };
   };
 
   const addTeam = (newTeam: any) => {
@@ -55,15 +53,17 @@ const TeamsList = () => {
   };
 
   return (
-    <EditableList getListContent={getTeams}
-                  addItemApi={addTeam}
-                  deleteItemApi={deleteTeamApi}
-                  updateItemApi={updateTeam}
-                  itemToAddModal={getAddTeamContent}
-                  itemToUpdateModal={getUpdateTeamContent}
-                  modalTitle="הוספת צוות"
-                  itemToPropertyList={itemToPropertyList}
-                  itemToLink={itemToLink}/>
+    <EditableList
+      getListContent={getTeams}
+      addItemApi={addTeam}
+      deleteItemApi={deleteTeamApi}
+      updateItemApi={updateTeam}
+      itemToAddModal={getAddTeamContent}
+      itemToUpdateModal={getUpdateTeamContent}
+      modalTitle="הוספת צוות"
+      itemToPropertyList={itemToPropertyList}
+      itemToLink={itemToLink}
+    />
   );
 };
 

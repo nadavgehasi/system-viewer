@@ -22,7 +22,7 @@ export const addSystemApi = (
 };
 
 export const updateSystemApi = (system: any): Promise<any> => {
-  return axios.put(`/api/systems/${system.id}`, {
+  return axios.put(`/api/systems/${system.id}/`, {
     name: system.name,
     team: system.team,
     universe: system.universe,

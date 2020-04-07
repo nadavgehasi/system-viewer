@@ -1,12 +1,10 @@
-import React, { useState } from "react";
-import { Dropdown, Input, Menu, Modal } from "antd";
+import React from "react";
+import { Input } from "antd";
 import "antd/lib/modal/style/index.css";
 import "antd/lib/button/style/index.css";
-import "antd/lib/menu/style/index.css";
-import "antd/lib/dropdown/style/index.css";
 import "./AddModal.css";
 import BasicModal from "./BasicModal";
-import { System } from "../../../types/system";
+import BasicSelect from "../Select/BasicSelect";
 
 interface AddModalProps {
   title: string;
@@ -29,40 +27,25 @@ const AddModal: React.FC<AddModalProps> = ({
   newObj,
   setNewObj,
 }) => {
+  const updateEntry = (name: string, value: string) => {
+    newObj[name] = value;
+    setNewObj(newObj);
+  };
+
   const getContent = (objectEntry: [string, unknown]) => {
-    if (objectEntry[1] === "") {
+    if (objectEntry[1] instanceof Array) {
       return (
-        <Input
-          placeholder={String(objectEntry[1])}
-          onChange={(e) => {
-            newObj[objectEntry[0]] = e.target.value;
-            setNewObj(newObj);
-          }}
+        <BasicSelect
+          content={objectEntry[1]}
+          onChange={(value: string) => updateEntry(objectEntry[0], value)}
         />
       );
-    } else if (objectEntry[1] instanceof Array) {
-      let menuValues = objectEntry[1];
-      const menu = (
-        <Menu
-          onClick={(e) => {
-            newObj[objectEntry[0]] = e.key;
-            setNewObj(newObj);
-          }}
-        >
-          {menuValues.map((value) => (
-            <Menu.Item key={value}>{value}</Menu.Item>
-          ))}
-        </Menu>
-      );
+    } else if (objectEntry[1] === "" || !isAdd) {
       return (
-        <Dropdown overlay={menu} trigger={["click"]}>
-          <span
-            className="ant-dropdown-link"
-            onClick={(e) => e.preventDefault()}
-          >
-            בחר {objectEntry[0]}
-          </span>
-        </Dropdown>
+        <Input
+          defaultValue={String(objectEntry[1])}
+          onChange={(e) => updateEntry(objectEntry[0], e.target.value)}
+        />
       );
     }
     return <span>{String(objectEntry[1])}</span>;
@@ -75,8 +58,9 @@ const AddModal: React.FC<AddModalProps> = ({
       onOk={(e) => {
         if (isAdd) {
           onAdd(e, newObj);
+        } else {
+          onUpdate(e, newObj);
         }
-        onUpdate(e, newObj);
       }}
       onCancel={(e) => onCancel(e, newObj)}
     >

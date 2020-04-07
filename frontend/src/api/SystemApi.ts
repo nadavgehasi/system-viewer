@@ -1,5 +1,5 @@
 import { System } from "../types/system";
-import axios from "axios";
+import axios from "./LoginApi";
 
 export const getTeamSystems = (teamId: string): Promise<Array<System>> => {
   return axios

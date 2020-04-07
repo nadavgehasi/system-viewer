@@ -1,5 +1,5 @@
-import { Team } from "../types/team";
-import axios from "axios";
+import {Team} from "../types/team";
+import axios from "./LoginApi";
 
 const convertResultToTeams = (res: any): Array<Team> => {
   console.log(res);

@@ -1,5 +1,5 @@
 import { Server } from "../types/server";
-import axios from "axios";
+import axios from "./LoginApi";
 
 export const getServers = (): Promise<Array<Server>> => {
   return axios.get(`/api/servers`).then((res) => res.data);
